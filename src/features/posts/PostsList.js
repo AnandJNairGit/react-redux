@@ -8,7 +8,7 @@ const PostsList = () => {
 
   const renderPost = posts.map((post, index) => {
     return (
-      <div>
+      <div key={index}>
         <h3>{post.title}</h3>
         <h5>{post.content}</h5>
         <hr />
@@ -17,7 +17,6 @@ const PostsList = () => {
   });
 
   return <div>
-    <form></form>
     {renderPost}</div>;
 };
 
