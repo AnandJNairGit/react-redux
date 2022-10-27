@@ -18,8 +18,18 @@ const initialState = {
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    addPost: (state, action) => {
+      console.log(action);
+      state.posts.push(action.payload);
+    },
+  },
 });
 
-export const getPosts = (state)=>{return state.posts.posts};
+console.log(postsSlice);
+export const {addPost} = postsSlice.actions;
+
+export const getPosts = (state) => {
+  return state.posts.posts;
+};
 export default postsSlice.reducer;
