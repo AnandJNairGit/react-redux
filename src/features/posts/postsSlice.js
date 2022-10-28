@@ -24,18 +24,19 @@ export const postsSlice = createSlice({
         console.log(action);
         state.posts.push(action.payload);
       },
-      prepare({ title, content }) {
-        return {payload:{
-          id: nanoid(),
-          title: title,
-          content: content,
-        }};
+      prepare({ title, content, userId }) {
+        return {
+          payload: {
+            id: nanoid(),
+            title: title,
+            content: content,
+            userId: userId,
+          },
+        };
       },
     },
   },
 });
-
-console.log(postsSlice);
 export const { addPost } = postsSlice.actions;
 
 export const getPosts = (state) => {
