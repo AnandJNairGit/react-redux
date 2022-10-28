@@ -1,4 +1,3 @@
-import { nanoid } from "@reduxjs/toolkit";
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addPost } from "./postsSlice";
@@ -8,10 +7,9 @@ const AddPostForm = () => {
   const titleRef = useRef();
   const contentRef = useRef();
   const handlePost = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(
       addPost({
-        id: nanoid(),
         title: titleRef.current.value,
         content: contentRef.current.value,
       })
