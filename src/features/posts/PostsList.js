@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../user/userSlice";
 import DisplayUser from "./DisplayUser";
 import { fetchPosts, getPosts } from "./postsSlice";
 
@@ -8,6 +9,7 @@ const PostsList = () => {
   const dispatch=useDispatch();
   useEffect(() => {
     console.log("DFSgfghdrhdfhd");
+    dispatch(fetchUsers());
     dispatch(fetchPosts());
   }, []);
 

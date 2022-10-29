@@ -49,7 +49,7 @@ export const postsSlice = createSlice({
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = status.SUCCESS;
         state.posts= action.payload;
-        console.log("the payload is ---->>", action.payload);
+        // console.log("the payload is ---->>", action.payload);
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = status.ERROR;
