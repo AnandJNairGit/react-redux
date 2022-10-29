@@ -1,11 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DisplayUser from "./DisplayUser";
-import { getPosts } from "./postsSlice";
+import { fetchPosts, getPosts } from "./postsSlice";
 
 const PostsList = () => {
   const posts = useSelector(getPosts);
-
+  const dispatch=useDispatch();
+  useEffect(() => {
+    console.log("DFSgfghdrhdfhd");
+    dispatch(fetchPosts());
+  }, []);
 
   const renderPost = posts.map((post, index) => {
     return (

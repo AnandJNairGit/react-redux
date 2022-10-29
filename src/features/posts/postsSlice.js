@@ -1,5 +1,8 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import axios from "axios";
+import status from "../../status";
 
+const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
 const initialState = {
   posts: [
     {
@@ -13,6 +16,8 @@ const initialState = {
       content: "hi, I Am a Node.js developer",
     },
   ],
+  status: status.IDLE,
+  error: "",
 };
 
 export const postsSlice = createSlice({
@@ -36,7 +41,28 @@ export const postsSlice = createSlice({
       },
     },
   },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchPosts.pending, (state, action) => {
+        state.status = status.LOADING;
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.status = status.SUCCESS;
+        console.log("the payload is ---->>", action.payload);
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = status.ERROR;
+      });
+  },
 });
+
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await axios.get(POSTS_URL);
+  console.log("the response is-------->", response);
+  return response;
+});
+
+fetchPosts();
 export const { addPost } = postsSlice.actions;
 
 export const getPosts = (state) => {
