@@ -29,12 +29,12 @@ export const postsSlice = createSlice({
         console.log(action);
         state.posts.push(action.payload);
       },
-      prepare({ title, content, userId }) {
+      prepare({ title, body, userId }) {
         return {
           payload: {
             id: nanoid(),
             title: title,
-            content: content,
+            body: body,
             userId: userId,
           },
         };
@@ -58,8 +58,8 @@ export const postsSlice = createSlice({
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await axios.get(POSTS_URL);
-  console.log("the response is-------->", response);
-  return response;
+  // console.log("the response is-------->", response);
+  return response.data;
 });
 
 fetchPosts();
