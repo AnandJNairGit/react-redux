@@ -15,7 +15,7 @@ const AddPostForm = () => {
     dispatch(
       addPost({
         title: titleRef.current.value,
-        content: contentRef.current.value,
+        body: contentRef.current.value,
         userId: userRef.current.value,
       })
     );
