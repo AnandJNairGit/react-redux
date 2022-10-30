@@ -8,12 +8,12 @@ const initialState = {
     {
       id: 1,
       title: "anand",
-      content: "hi, I Am a React.js developer",
+      body: "hi, I Am a React.js developer",
     },
     {
       id: 2,
       title: "suresh",
-      content: "hi, I Am a Node.js developer",
+      body: "hi, I Am a Node.js developer",
     },
   ],
   status: status.IDLE,
@@ -66,6 +66,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 fetchPosts();
 export const { addPost } = postsSlice.actions;
 
+export const getStatus =(state) =>{return state.posts.status};
 export const getPosts = (state) => {
   return state.posts.posts;
 };
